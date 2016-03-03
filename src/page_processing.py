@@ -7,10 +7,17 @@ from urllib import urlretrieve
 
 
 def get_images_link(url, page):
-    return [] 
+    """ получаем список ссылок на картинки """
+    url = "%s/%d" % (url, page)
+    page_tree = html.fromstring(urlopen(url).read())
+    images = page_tree.xpath('//div[@class="strip"]/a/img')
+    links = [img.attrib['src'] for img in images]
+    return links
+
 
 def save_image(link, dest):
     urlretrieve(link, dest + '/' + link.split('/')[-1])
+
 
 def get_page_count(tree):
     desc = tree.xpath('//div[@class="description"]')[1].text_content()
