@@ -3,11 +3,14 @@
 import os
 from lxml import html
 from urllib2 import urlopen
+from urllib import urlretrieve
 
 
 def get_images_link(url, page):
     return [] 
 
+def save_image(link, dest):
+    urlretrieve(link, dest + '/' + link.split('/')[-1])
 
 def get_page_count(tree):
     desc = tree.xpath('//div[@class="description"]')[1].text_content()
