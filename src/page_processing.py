@@ -36,8 +36,11 @@ def download(url, dest):
     main_url_data = urlopen(url).read()
     tree = html.fromstring(main_url_data)
     page_count = get_page_count(tree)
+    image_counter = 0
     for page in range(1, page_count + 1):
         for link in get_images_link(url, page):
+            image_counter += 1
+            print "page %d / %d, image: %d" % (page, page_count, image_counter)
             save_image(link, dest)
 
 
