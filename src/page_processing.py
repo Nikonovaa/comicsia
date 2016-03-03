@@ -10,7 +10,9 @@ def get_images_link(url, page):
 
 
 def get_page_count(tree):
-    return 0
+    desc = tree.xpath('//div[@class="description"]')[1].text_content()
+    number = [word for word in desc.split() if word.isdigit()][-1]
+    return int(number)
 
 
 def download(url, dest):
