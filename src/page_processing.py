@@ -42,8 +42,3 @@ def download(url, dest):
             image_counter += 1
             print "page %d / %d, image: %d" % (page, page_count, image_counter)
             save_image(link, dest)
-
-if __name__ == '__main__':
-    download_dir = os.environ.get('PWD') + '/download'
-    url = 'http://comicsia.ru/collections/swine'
-    download(url, download_dir)
