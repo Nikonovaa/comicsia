@@ -31,7 +31,7 @@ def get_page_count(tree):
 
 def download(url, dest):
     """ основной сценарий """
-    if os.path.isdir(dest):
+    if not os.path.isdir(dest):
         os.mkdir(dest)    
     main_url_data = urlopen(url).read()
     tree = html.fromstring(main_url_data)
